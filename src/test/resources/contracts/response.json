@@ -1,8 +1,6 @@
 {
-  "total": 3,
-  "page": 0,
-  "pageSize": 10,
-  "data": [
+
+  "content": [
     {
       "id": 1,
       "date": "1535644800000",
@@ -18,5 +16,27 @@
       "date": "1535644800000",
       "content": "##Test"
     }
-  ]
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false
+    },
+    "offset": 0,
+    "pageSize": 10,
+    "pageNumber": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 3,
+  "size": 10,
+  "number": 0,
+  "first": true,
+  "numberOfElements": 3,
+  "sort": {
+    "sorted": true,
+    "unsorted": false
+  }
 }

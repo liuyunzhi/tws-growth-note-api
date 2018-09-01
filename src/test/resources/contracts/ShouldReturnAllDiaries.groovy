@@ -4,7 +4,12 @@ Contract.make {
     name "should_return_all_diaries"
     request {
         method GET()
-        url("/diaries?page=0&pageSize=10")
+        url("/diaries") {
+            queryParameters {
+                parameter("page", "0")
+                parameter("pageSize", "10")
+            }
+        }
     }
     response {
         status OK()
