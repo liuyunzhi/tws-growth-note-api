@@ -6,6 +6,7 @@ import cn.thoughtworks.school.growthnoteapi.repository.DiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,8 @@ public class DiaryService {
     }
 
     public Page<Diary> getAll(Integer page, Integer pageSize) {
-        return diaryRepository.findAll(PageRequest.of(page, pageSize));
+        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        return diaryRepository.findAll(PageRequest.of(page, pageSize, sort));
     }
 
     public void update(Long diaryId, Diary diary) {
