@@ -1,6 +1,5 @@
 package cn.thoughtworks.school.growthnoteapi.service;
 
-import cn.thoughtworks.school.growthnoteapi.controller.response.DiariesResponse;
 import cn.thoughtworks.school.growthnoteapi.entity.Diary;
 import cn.thoughtworks.school.growthnoteapi.exception.DiaryNotFoundException;
 import cn.thoughtworks.school.growthnoteapi.repository.DiaryRepository;
@@ -19,18 +18,13 @@ public class DiaryService {
         return diaryRepository.save(diary).getId();
     }
 
-    public DiariesResponse getAll(Integer page, Integer pageSize) {
-        Page<Diary> diaryPage = diaryRepository.findAll(PageRequest.of(page, pageSize));
-        return new DiariesResponse(diaryPage.getTotalElements(),
-                diaryPage.getNumber(),
-                diaryPage.getSize(),
-                diaryPage.getContent());
+    public Page<Diary> getAll(Integer page, Integer pageSize) {
+        return diaryRepository.findAll(PageRequest.of(page, pageSize));
     }
 
     public void update(Long diaryId, Diary diary) {
         Diary oldDiary = diaryRepository.findById(diaryId).orElseThrow(DiaryNotFoundException::new);
-        oldDiary.setDate(diary.getDate());
-        oldDiary.setContent(diary.getContent());
+        oldDiary.updateDiary(diary.getDate(), diary.getContent());
         diaryRepository.save(oldDiary);
     }
 

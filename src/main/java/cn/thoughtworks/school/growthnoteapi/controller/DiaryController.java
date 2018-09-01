@@ -1,10 +1,10 @@
 package cn.thoughtworks.school.growthnoteapi.controller;
 
-import cn.thoughtworks.school.growthnoteapi.controller.response.DiariesResponse;
 import cn.thoughtworks.school.growthnoteapi.entity.Diary;
 import cn.thoughtworks.school.growthnoteapi.exception.DiaryNotFoundException;
 import cn.thoughtworks.school.growthnoteapi.service.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,11 +30,12 @@ public class DiaryController {
 
     @PostMapping
     public ResponseEntity add(@RequestBody Diary diary) {
-        return ResponseEntity.created(URI.create("/products/" + diaryService.add(diary))).build();
+        return ResponseEntity.created(URI.create("/diaries/" + diaryService.add(diary))).build();
     }
 
     @GetMapping
-    public ResponseEntity<DiariesResponse> getAll(@RequestParam Integer page, @RequestParam Integer pageSize) {
+    public ResponseEntity<Page<Diary>> getAll(@RequestParam(defaultValue = "0") Integer page,
+                                       @RequestParam(defaultValue = "10") Integer pageSize) {
         return ResponseEntity.ok(diaryService.getAll(page, pageSize));
     }
 

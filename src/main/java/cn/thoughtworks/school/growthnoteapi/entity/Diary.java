@@ -17,4 +17,9 @@ public class Diary {
     private Long id;
     private Date date;
     private String content;
+
+    public void updateDiary(Date date, String content) {
+        this.date = date;
+        this.content = content;
+    }
 }
