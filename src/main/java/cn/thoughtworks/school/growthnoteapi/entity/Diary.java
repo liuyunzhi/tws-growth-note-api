@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -18,8 +21,19 @@ public class Diary {
     private Date date;
     private String content;
 
-    public void updateDiary(Date date, String content) {
-        this.date = date;
+    public void setDate(String date) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        this.date = dateFormat.parse(date);
+    }
+
+    public String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return dateFormat.format(this.date);
+    }
+
+    public void updateDiary(String date, String content) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        this.date = dateFormat.parse(date);
         this.content = content;
     }
 }

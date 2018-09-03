@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/diaries")
@@ -40,7 +41,7 @@ public class DiaryController {
     }
 
     @PutMapping("/{diaryId}")
-    public ResponseEntity update(@PathVariable Long diaryId, @RequestBody Diary diary) {
+    public ResponseEntity update(@PathVariable Long diaryId, @RequestBody Diary diary) throws ParseException {
         diaryService.update(diaryId, diary);
         return ResponseEntity.noContent().build();
     }

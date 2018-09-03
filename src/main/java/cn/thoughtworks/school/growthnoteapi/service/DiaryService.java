@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+
 @Service
 public class DiaryService {
 
@@ -20,11 +22,11 @@ public class DiaryService {
     }
 
     public Page<Diary> getAll(Integer page, Integer pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        Sort sort = new Sort(Sort.Direction.DESC, "date", "id");
         return diaryRepository.findAll(PageRequest.of(page, pageSize, sort));
     }
 
-    public void update(Long diaryId, Diary diary) {
+    public void update(Long diaryId, Diary diary) throws ParseException {
         Diary oldDiary = diaryRepository.findById(diaryId).orElseThrow(DiaryNotFoundException::new);
         oldDiary.updateDiary(diary.getDate(), diary.getContent());
         diaryRepository.save(oldDiary);
