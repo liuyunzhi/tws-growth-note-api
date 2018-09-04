@@ -21,9 +21,13 @@ public class Diary {
     private Date date;
     private String content;
 
-    public void setDate(String date) throws ParseException {
+    public void setDate(String date) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        this.date = dateFormat.parse(date);
+        try {
+            this.date = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getDate() {
@@ -31,9 +35,13 @@ public class Diary {
         return dateFormat.format(this.date);
     }
 
-    public void updateDiary(String date, String content) throws ParseException {
+    public void updateDiary(String date, String content) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        this.date = dateFormat.parse(date);
+        try {
+            this.date = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.content = content;
     }
 }

@@ -26,7 +26,7 @@ public class DiaryService {
         return diaryRepository.findAll(PageRequest.of(page, pageSize, sort));
     }
 
-    public void update(Long diaryId, Diary diary) throws ParseException {
+    public void update(Long diaryId, Diary diary) {
         Diary oldDiary = diaryRepository.findById(diaryId).orElseThrow(DiaryNotFoundException::new);
         oldDiary.updateDiary(diary.getDate(), diary.getContent());
         diaryRepository.save(oldDiary);

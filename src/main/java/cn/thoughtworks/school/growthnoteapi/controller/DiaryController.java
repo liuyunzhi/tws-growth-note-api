@@ -41,7 +41,7 @@ public class DiaryController {
     }
 
     @PutMapping("/{diaryId}")
-    public ResponseEntity update(@PathVariable Long diaryId, @RequestBody Diary diary) throws ParseException {
+    public ResponseEntity update(@PathVariable Long diaryId, @RequestBody Diary diary) {
         diaryService.update(diaryId, diary);
         return ResponseEntity.noContent().build();
     }
