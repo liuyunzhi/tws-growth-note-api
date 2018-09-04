@@ -1,5 +1,6 @@
 package cn.thoughtworks.school.growthnoteapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -21,26 +22,27 @@ public class Diary {
     private Date date;
     private String content;
 
+    @JsonIgnore
+    private static final String DATE_FORMAT = "yyyy/MM/dd";
+
     public void setDate(String date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         try {
             this.date = dateFormat.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
 
     public String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         return dateFormat.format(this.date);
     }
 
     public void updateDiary(String date, String content) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         try {
             this.date = dateFormat.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
         this.content = content;
     }
