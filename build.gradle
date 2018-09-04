@@ -19,6 +19,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'spring-cloud-contract'
 apply plugin: 'groovy'
 apply plugin: "org.sonarqube"
+apply plugin: 'jacoco'
 
 group = 'cn.thoughtworks.school'
 version = '0.0.1-SNAPSHOT'
@@ -57,3 +58,17 @@ dependencyManagement {
 contracts {
 	baseClassForTests = "cn.thoughtworks.school.growthnoteapi.ProductBaseTest"
 }
+
+jacoco {
+	toolVersion = "0.8.1"
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
+	}
+}
+
